@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block task %}
+
+{% if messages %}
+<div class="messages" id="message">
+    {% for message in messages %}
+    <p  {% if message.tags %} class="p-2 text-success {{ message.tags }} " {% endif %}> {{ message }} </p>
+    {% endfor %}
+</div>
+{% endif %}
+
+<h3 class="mt-2">Last 7 days status of BitCoin in USD</h3>
+<div class="graph" id="graph" >
+  <canvas id="myChart" width="400" height="145" class="canvas"></canvas>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="mt-2">
+   <h3 class=""> <i class="material-icons">add</i>Insert Data</h3>
+   <form method="POST" action="{% url 'insert' %}" validation>
+       {% csrf_token %}
+       <div class="row container">
+   <input type="text" class="col-md-4 col-sm-12" placeholder="Name" name="name" required>
+   <input type="number" class="col-md-4 col-sm-12" placeholder="Inter Amount $" name="amount" required>
+   <input type="text" class="col-md-4 col-sm-12" placeholder="Type Location" name="location" required>
+  </div>
+   <input type="submit"  class="btn btn-primary font-bold rounded-circle add" value="Add">
+
+  </form>
+</div>
+
+
+
+{% endblock %}
+
+{% block table %}
+<table class="table table-dark table-striped mt-4">
+
+    <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Amount</th>
+          <th scope="col">Location</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+          
+          {% for info in data %}                
+        <tr>
+          <th scope="row">{{info.id}}</th>
+          <td>{{info.name}}</td>
+          <td>{{info.amount}}$</td>
+          <td>{{info.location}}</td>
+          <td><a href="{% url 'edit' info.id %}" class="btn btn-primary">Edit</a> <a href="{% url 'delete' info.id %}" class="btn btn-danger">Delete</a> </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+
+</table>
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript"> 
+
+
+
+const labels = {{time|safe}};
+  const data = {
+    labels: labels,
+    datasets: [{
+      label: 'BitCoin Rate in USD',
+      backgroundColor: 'rgb(255, 99, 132)',
+      borderColor: 'rgb(255, 99, 132)',
+      data: {{price|safe}},
+    }]
+  };
+
+  const config = {
+    type: 'line',
+    data: data,
+    options: {}
+  };
+
+
+const myChart = new Chart(
+    document.getElementById('myChart'),
+    config
+  );
+
+
+
+</script>
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,47 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}   
+<div class="mt-2">
+    <h3 class=""> Edit Data</h3>
+    <form method="post" action="{% url 'update' info.id %}">
+        {% csrf_token %}
+        <div class="row container">
+    <input type="text" value="{{info.name}}" class="col-md-4 col-sm-12" name="name">
+    <input type="number" value="{{info.amount}}" class="col-md-4 col-sm-12" name="amount">
+    <input type="text" value="{{info.location}}" class="col-md-4 col-sm-12" name="location">
+        </div>
+    <input type="submit" class="btn btn-primary font-bold  add" value="Update"></form>
+ 
+ </div>
+{% endblock %}
+     
+
+{% block table %}
+<table class="table table-dark table-striped mt-4">
+
+    <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Amount</th>
+          <th scope="col">Location</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+          
+          {% for info in data %}                
+        <tr>
+          <th scope="row">{{info.id}}</th>
+          <td>{{info.name}}</td>
+          <td>{{info.amount}}$</td>
+          <td>{{info.location}}</td>
+          <td><a href="{% url 'edit' info.id %}" class="btn btn-primary">Edit</a> <a href="{% url 'delete' info.id %}" class="btn btn-danger">Delete</a> </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+
+</table>
+{% endblock %}

@@ -1,0 +1,20 @@
+*{
+    box-sizing: border-box !important;
+}
+form{
+    display: flex;
+   
+    align-items: center;
+
+}
+.add{
+margin-left: 10px !important;
+font-weight: bold;
+font-size: 15px;
+}
+
+
+@media only screen and (max-width: 650px){
+
+
+}
