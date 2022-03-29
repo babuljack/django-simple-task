@@ -1,7 +1,7 @@
 
 # django-simple-task
-this is a simple task with python django api and javascriipt chart.
-xss attact has prevented from attackers.
+this is a simple task with python django api and javascript chart.
+xss attact has been prevented from attackers.
 
 To run this project..<br>
 1.first clone this.<br>
