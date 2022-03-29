@@ -1,13 +1,20 @@
+
 # django-simple-task
 this is a simple task with python django api and javascriipt chart.
 xss attact has prevented from attackers.
 
-To run this project first clone this.
-git clone https://github.com/babuljack/django-simple-task.git
-second:
-pip install -r requirements.txt
-third:
+To run this project..<br>
+1.first clone this.<br>
+git clone https://github.com/babuljack/django-simple-task.git <br>
+2.install requirements.<br>
+pip install -r requirements.txt <br>
+3.change the settings.<br>
 change the settings in database name ,user and password according to your mysql database.
-Everything should be working fine.
-
+Everything should be working fine.<br>
 Thanks..
+
+# Overview
+
+![alt text](task.png)
+
+
