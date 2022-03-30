@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.db.models import Q
 import requests,json
 from datetime import datetime
+from django.http import JsonResponse
 # Create your views here.
 def Home(request):
     data=Information.objects.all()
@@ -63,12 +64,14 @@ def Delete(request,id):
     try:
         Information.objects.get(id=id).delete()
         messages.success(request, 'Data deleted...')
+        return JsonResponse({"status":"success"}) 
     except:
         messages.success(request, 'Something went wrong')
-    return HttpResponseRedirect('/')    
+        return JsonResponse({"status":"failed"})   
 
 def Search(request):
-    data=escape(request.GET.get('search'))
+    #data=escape(request.GET.get('search'))
+    data=request.GET.get('search')
     context=None
     if not data:
         return HttpResponseRedirect('/')
