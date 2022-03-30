@@ -13,8 +13,10 @@ change the settings in database name ,user and password according to your mysql 
 Everything should be working fine.<br>
 Thanks..
 
-# Overview
 
-![alt text](task.png)
+# Overview
+* added delete via drag.
+
+![alt text](latest.png)
 
 
